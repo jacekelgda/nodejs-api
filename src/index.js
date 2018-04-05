@@ -1,11 +1,11 @@
-import bodyParser from 'body-parser';
-import express from 'express';
+import mongoose from 'mongoose';
+import app from './config/express';
+import config from './config/config';
 
-const port = process.env.PORT || 3000;
-const app = express();
+mongoose.connect(config.mongo.host);
+mongoose.connection.on('error', () => {
+  throw new Error(`unable to connect to database: ${config.mongo.host}`);
+});
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.listen(port);
+app.listen(config.port);
 module.exports = app;
