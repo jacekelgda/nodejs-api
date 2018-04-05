@@ -47,4 +47,15 @@ describe('POST /api/movies/', () => {
       })
       .catch(done);
   });
+
+  it('should validate title param', async (done) => {
+    request(app)
+      .post('/api/movies')
+      .expect(httpStatus.BAD_REQUEST)
+      .then((res) => {
+        expect(res.body).toEqual('Bad Request: "title" is required');
+        done();
+      })
+      .catch(done);
+  });
 });
