@@ -12,8 +12,11 @@ CommentSchema.statics = {
   get(id) {
     return this.findById(id);
   },
-  list() {
-    return this.find();
+  list(filterBy = null, filterId = null) {
+    return filterBy ? this.find()
+      .where(filterBy)
+      .equals(filterId)
+      .exec() : this.find();
   },
 };
 

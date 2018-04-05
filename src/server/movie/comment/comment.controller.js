@@ -40,9 +40,16 @@ const load = (req, res, next, id) => {
 const get = (req, res) => res.json(req.comment);
 
 const list = (req, res, next) => {
-  Comment.list()
+  const { filterBy = null, filterId = null } = req.query;
+  Comment.list(filterBy, filterId)
     .then(comments => res.json(comments))
     .catch(e => next(e));
 };
 
-module.exports = { create, add, list, load, get };
+module.exports = {
+  create,
+  add,
+  list,
+  load,
+  get,
+};
