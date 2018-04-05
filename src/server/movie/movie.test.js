@@ -8,12 +8,13 @@ import Movie from './movie.model';
 
 let mongoServer;
 
-beforeAll(async () => {
+beforeEach(async () => {
   mongoServer = new MongodbMemoryServer();
-  await mongoose.connect(global.MONGO_URI);
+  const uri = await mongoServer.getConnectionString();
+  await mongoose.connect(uri);
 });
 
-afterAll(async () => {
+afterEach(async () => {
   mongoose.disconnect();
   mongoServer.stop();
 });
@@ -59,3 +60,21 @@ describe('POST /api/movies/', () => {
       .catch(done);
   });
 });
+
+describe('POST /api/movies/{movieId}/comments', () => {
+  it('should add comment', async (done) => {
+    const movie = new Movie({ title: 'Some movie 3' });
+    await movie.save();
+
+    request(app)
+      .post(`/api/movies/${movie._id}/comments`) // eslint-disable-line
+      .send({ text: 'Some movie comment' })
+      .expect(httpStatus.OK)
+      .then((res) => {
+        expect(res.body.text).toEqual('Some movie comment');
+        done();
+      })
+      .catch(done);
+  });
+});
+

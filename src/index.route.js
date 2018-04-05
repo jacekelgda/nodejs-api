@@ -1,8 +1,10 @@
 import express from 'express';
-import movieRoutes from './server/movie/movie.route';
+import movieRoute from './server/movie/movie.route';
+import commentRoute from './server/movie/comment/comment.route';
 
 const router = express.Router();
 
-router.use('/movies', movieRoutes);
+router.use('/movies', movieRoute);
+router.use('/comments', commentRoute);
 
 module.exports = router;

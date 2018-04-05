@@ -1,5 +1,14 @@
 import Movie from './movie.model';
 
+const load = (req, res, next, id) => {
+  Movie.get(id)
+    .then((movie) => {
+      req.movie = movie;
+      return next();
+    })
+    .catch(e => next(e));
+};
+
 const create = (req, res, next) => {
   const movie = new Movie({
     title: req.body.title,
@@ -16,4 +25,4 @@ const list = (req, res, next) => {
     .catch(e => next(e));
 };
 
-module.exports = { create, list };
+module.exports = { load, create, list };

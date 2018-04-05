@@ -7,5 +7,7 @@ mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${config.mongo.host}`);
 });
 
-app.listen(config.port);
+if (!module.parent) {
+  app.listen(config.port);
+}
 module.exports = app;
