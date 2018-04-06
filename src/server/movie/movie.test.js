@@ -2,11 +2,13 @@ import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import request from 'supertest-as-promised';
 import MongodbMemoryServer from 'mongodb-memory-server';
+import axios from 'axios';
 
 import app from '../../index';
 import Movie from './movie.model';
 
 let mongoServer;
+jest.mock('axios');
 
 beforeEach(async () => {
   mongoServer = new MongodbMemoryServer();
@@ -38,6 +40,7 @@ describe('GET /api/movies/', () => {
 
 describe('POST /api/movies/', () => {
   it('should create movie', async (done) => {
+    axios.get.mockResolvedValue({ data: { Title: 'Blade Runner' } });
     request(app)
       .post('/api/movies')
       .send({ title: 'Blade Runner' })
