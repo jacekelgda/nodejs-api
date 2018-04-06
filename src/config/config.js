@@ -12,6 +12,10 @@ const envVarsSchema = Joi.object({
     .description('Mongo DB host url'),
   MONGO_PORT: Joi.number()
     .default(27017),
+  IMDB_API_KEY: Joi.string().required()
+    .description('IMDB API key'),
+  IMDB_API_URL: Joi.string().required()
+    .description('IMDB API url'),
 }).unknown()
   .required();
 
@@ -28,6 +32,10 @@ const config = {
   mongo: {
     host: envVars.MONGO_HOST,
     port: envVars.MONGO_PORT,
+  },
+  omdb: {
+    key: envVars.IMDB_API_KEY,
+    url: envVars.IMDB_API_URL,
   },
 };
 

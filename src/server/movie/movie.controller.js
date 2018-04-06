@@ -12,6 +12,7 @@ const load = (req, res, next, id) => {
 const create = (req, res, next) => {
   const movie = new Movie({
     title: req.body.title,
+    meta: req.movieMeta,
   });
 
   movie.save()

@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const MovieSchema = new mongoose.Schema({
   title: String,
+  meta: Object,
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'comment',

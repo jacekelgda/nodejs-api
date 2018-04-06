@@ -40,10 +40,11 @@ describe('POST /api/movies/', () => {
   it('should create movie', async (done) => {
     request(app)
       .post('/api/movies')
-      .send({ title: 'Some other movie' })
+      .send({ title: 'Blade Runner' })
       .expect(httpStatus.OK)
       .then((res) => {
-        expect(res.body.title).toEqual('Some other movie');
+        expect(res.body.title).toEqual('Blade Runner');
+        expect(res.body.meta.Title).toEqual('Blade Runner');
         done();
       })
       .catch(done);

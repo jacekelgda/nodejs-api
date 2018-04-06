@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jacekelgda/nodejs-api#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
