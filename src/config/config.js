@@ -37,6 +37,7 @@ const config = {
     key: envVars.IMDB_API_KEY,
     url: envVars.IMDB_API_URL,
   },
+  testEnv: 'test',
 };
 
 module.exports = config;

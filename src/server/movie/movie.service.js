@@ -8,5 +8,5 @@ export default (req, res, next) => {
       req.movieMeta = movieMeta.data;
       return next();
     })
-    .catch(e => next(e));
+    .catch(() => next());
 };

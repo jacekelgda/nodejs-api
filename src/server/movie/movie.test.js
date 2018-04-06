@@ -67,15 +67,14 @@ describe('POST /api/movies/', () => {
 
 describe('POST /api/movies/{movieId}/comments', () => {
   it('should add comment', async (done) => {
-    const movie = new Movie({ title: 'Some movie 3' });
+    const movie = new Movie({ title: 'Matrix', meta: { Title: 'Matrix' } });
     await movie.save();
-
     request(app)
       .post(`/api/movies/${movie._id}/comments`) // eslint-disable-line
-      .send({ text: 'Some movie comment' })
+      .send({ text: 'Matrix was ok... I guess...' })
       .expect(httpStatus.OK)
       .then((res) => {
-        expect(res.body.text).toEqual('Some movie comment');
+        expect(res.body.text).toEqual('Matrix was ok... I guess...');
         done();
       })
       .catch(done);

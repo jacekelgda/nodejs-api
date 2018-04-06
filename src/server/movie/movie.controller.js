@@ -14,7 +14,6 @@ const create = (req, res, next) => {
     title: req.body.title,
     meta: req.movieMeta,
   });
-
   movie.save()
     .then(savedMovie => res.json(savedMovie))
     .catch(e => next(e));
