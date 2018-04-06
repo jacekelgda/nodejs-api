@@ -7,7 +7,8 @@
     "test": "jest --forceExit --maxWorkers=1 --bail",
     "build": "babel src/ -d lib/",
     "dev": "nodemon -w src --exec \"babel-node src/index.js\"",
-    "eslint": "eslint src --fix"
+    "eslint": "eslint src --fix",
+    "start": "./node_modules/.bin/babel-node lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,17 @@
   "homepage": "https://github.com/jacekelgda/nodejs-api#readme",
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-validation": "^1.0.2",
+    "http-status": "^1.0.1",
     "jest-environment-node": "^22.4.3",
     "joi": "^13.1.2",
     "mongodb": "^3.0.5",
@@ -33,17 +40,11 @@
     "mongoose": "^5.0.12"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.4.3",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-jest": "^21.15.0",
-    "http-status": "^1.0.1",
     "jest": "^22.4.3",
     "mocha": "^5.0.5",
     "nodemon": "^1.17.3",
